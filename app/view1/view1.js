@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.view1', ['ngRoute', 'infinite-scroll'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
@@ -14,28 +14,11 @@ angular.module('myApp.view1', ['ngRoute'])
     $scope.page = 1;
     $http.get("http://api.themoviedb.org/3/discover/movie?api_key=b83e15027df50325aa48d0cdc5c9bf30&&page="+$scope.page)
         .then(function(response){ $scope.details = response.data; });
-    $scope.pagePlus = function(){
+    $scope.nextPage = function(){
+        $scope.busy = true;
         $scope.page += 1;
         $http.get("http://api.themoviedb.org/3/discover/movie?api_key=b83e15027df50325aa48d0cdc5c9bf30&&page="+$scope.page)
             .then(function(response){ $scope.details = response.data; });
-        $scope.clicked = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,];
-    };
-    $scope.pageMinus = function() {
-        if ($scope.page > 1) {
-            $scope.page -= 1;
-            $http.get("http://api.themoviedb.org/3/discover/movie?api_key=b83e15027df50325aa48d0cdc5c9bf30&&page=" + $scope.page)
-                .then(function (response) {
-                    $scope.details = response.data;
-                });
-            $scope.clicked = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,];
-        }
-    };
-    $scope.clicked = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,];
-    $scope.click = function(index){
-        if($scope.clicked[index]){
-            $scope.clicked[index]= false;
-        }else {
-            $scope.clicked[index] = true;
-        }
-    };
+        $scope.busy = false;
+    }
 });

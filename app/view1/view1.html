@@ -1,17 +1,6 @@
-<div ng-repeat ="result in details.results">
-    <img ng-src="https://image.tmdb.org/t/p/w185{{result.poster_path}}" ng-click ="click($index)">
-    <p> {{result.title}}</p>
-    <p ng-show="clicked[$index]">
-        Overview: {{result.overview}}<br>
-        Rating  : {{result.vote_average}}
-    </p>
+<div infinite-scroll='nextPage()' infinite-scroll-disabled="busy" infinite-scroll-distance='0'>
+    <div ng-repeat ="result in details.results">
+        <img ng-src="https://image.tmdb.org/t/p/w185{{result.poster_path}}">
+        <p> {{result.title}}</p>
+    </div>
 </div>
-<p>
-    <button ng-click = "pageMinus()">
-        <<
-    </button>
-    {{page}}
-    <button ng-click = "pagePlus()">
-        >>
-    </button>
-</p>
