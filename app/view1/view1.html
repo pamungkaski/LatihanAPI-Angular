@@ -1,8 +1,11 @@
 <div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='0'>
     <div ng-repeat ="detail in details">
         <div ng-repeat ="result in detail.results">
-            <img ng-src="https://image.tmdb.org/t/p/w185{{result.poster_path}}">
+            <img ng-src="https://image.tmdb.org/t/p/w185{{result.poster_path}}" ng-click="showMoreInfo(noIndex($index,detail.page))">
             <p> {{result.title}}</p>
+            <p ng-show ='info[noIndex($index,detail.page)]'>
+                {{result.overview}}
+            </p>
         </div> 
     </div> 
     <div ng-show='busy'>Loading data...</div> 
