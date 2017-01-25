@@ -6,6 +6,8 @@
 
 * Clone This repository.
 * Node.JS Installed
+* ngInfiniteScroll module
+* Bower
 
 ### Install Dependencies
 
@@ -34,6 +36,10 @@ two new folders in your project.
 `angular-seed` changes this location through the `.bowerrc` file. Putting it in the `app` folder
 makes it easier to serve the files by a web server.*
 
+To add ngInfiniteScroll to bower dependecies
+```
+bower install ngInfiniteScroll#1.0.0
+```
 ### Run the Application
 
 We have preconfigured the project with a simple development web server. The simplest way to start
